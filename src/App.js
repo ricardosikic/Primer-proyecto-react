@@ -4,35 +4,42 @@ import './App.css';
 
 
 
-export class Relojito extends React.Component {
+export class Contador extends React.Component {
 
- constructor(props) {
-   super(props);
-   this.state = { date: new Date() };
- }
+  constructor(props) {
+    super(props);
+    this.state = { conta: 0 };
+  }
 
- componentDidMount() {
-   this.timerID = setInterval( () => this.tick(), 1000 );
- }
+  componentDidMount() {
+    this.contaID = setInterval(() => this.aumento(), 100);
+  }
 
+  componentWillUnmount() {
+    clearInterval(this.contaID);
+  }
 
- componentWillUnmount() {
-   clearInterval(this.timerID);
- }
+  componentDidUpdate() {
+    if(this.state.conta > 3004) {
+       clearInterval(this.contaID);
+    }
+  }
 
- tick() {
-    this.setState({ 
-      date: new Date() 
+  aumento() {
+    this.setState({
+      conta: this.state.conta + 1
     });
- }
+  }
 
   render() {
-    return(
-     <div>
-      <h1>Hola Mundo!</h1>
-      <h2>Son las {this.state.date.toLocaleTimeString()}</h2>
-     </div> 
+    return (
+      <div>
+        <h1>Como Avanza el Contador</h1>
+        <h3>{Math.floor((this.state.conta / 1000) % 10)}</h3>
+        <h3>{Math.floor(this.state.conta / 100) % 10}</h3>
+        <h3>{Math.floor(this.state.conta / 10) % 10}</h3>
+        <h3>{Math.floor(this.state.conta / 1) % 10}</h3>
+      </div>
     );
   }
 }
-

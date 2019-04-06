@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import {Relojito} from './App.js';
+import {Contador} from './App.js';
 
-ReactDOM.render(<Relojito />, document.getElementById('root'));
+ReactDOM.render(<Contador />, document.getElementById('root'));
 
 
 
